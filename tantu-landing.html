@@ -702,6 +702,14 @@ html,body{overflow-x:clip}
   .top.open .menu{background:var(--primary-soft);color:var(--primary-strong)}
 }
 @media (max-width:640px){.cw .ph{max-width:100%}}
+
+/* r4: slider — clip-path makes the before layer a stacking context, so the after image (z-index 2) painted over it */
+.ba-before{z-index:3}
+
+/* r5: swatch ring measured against the button, not the row (hover transform changed the offset parent) */
+.sw{position:relative}
+.fest>*{position:relative;z-index:1}
+.fest .sparks{z-index:0}
 </style>
 </head>
 <body>
@@ -814,6 +822,7 @@ html,body{overflow-x:clip}
 <section>
   <div class="wrap cw">
     <div class="cw-controls">
+      <div class="sec-head left" style="margin-bottom:4px"><span class="eyebrow">Colour variants · any location</span><h2>One saree. Every colour. Any backdrop.</h2><p>Shoot one colourway and render the rest — same weave, same pallu, same styling. Then move the whole shoot from a golden stepwell to a Himalayan temple. Go on, tap a colour.</p></div>
       <div><span class="eyebrow">Colourway</span>
         <div class="swatches" style="margin-top:10px" id="swatches"><button type="button" class="sw" aria-pressed="true" data-c="lilac"><i style="background:#b9a7e8"></i>Lilac</button><button type="button" class="sw" aria-pressed="false" data-c="rose"><i style="background:#e9a3b4"></i>Rose</button><button type="button" class="sw" aria-pressed="false" data-c="sky"><i style="background:#9ec3ea"></i>Sky</button><button type="button" class="sw" aria-pressed="false" data-c="sage"><i style="background:#a9c7a3"></i>Sage</button></div>
       </div>

@@ -1,5 +1,6 @@
 {
-  "functions": {
-    "api/generate.js": { "maxDuration": 120 }
-  }
+  "cleanUrls": false,
+  "rewrites": [
+    { "source": "/", "destination": "/tantu-landing.html" }
+  ]
 }

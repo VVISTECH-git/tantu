@@ -200,6 +200,16 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--fg3);text-align:center
 .lb button{position:absolute;top:16px;right:16px;width:42px;height:42px;border-radius:50%;border:0;background:#fff;font-size:20px;cursor:pointer;color:#111}
 .tmark{display:inline-block;width:1.35em;height:.85em;vertical-align:-.08em;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Cpath d='M2 10c5-9 9-9 12-4s7 5 12-4' fill='none' stroke='%23000' stroke-width='3.4' stroke-linecap='round'/%3E%3Cpath d='M2 17c5-9 9-9 12-4s7 5 12-4' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 20'%3E%3Cpath d='M2 10c5-9 9-9 12-4s7 5 12-4' fill='none' stroke='%23000' stroke-width='3.4' stroke-linecap='round'/%3E%3Cpath d='M2 17c5-9 9-9 12-4s7 5 12-4' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' opacity='.55'/%3E%3C/svg%3E") center/contain no-repeat}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+
+/* r3: mobile menu */
+.top .wrap{position:relative}
+.menu{display:none;width:40px;height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#fff;font-size:20px;line-height:1;cursor:pointer;margin-left:6px;margin-right:8px}
+.top nav .m-only{display:none}
+@media (max-width:859px){
+  .menu{display:inline-grid;place-items:center}
+  .top.open nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:flex-start;gap:18px;padding:18px 20px 24px;background:rgba(20,14,10,.97);border-bottom:1px solid rgba(255,255,255,.08);font-size:16px;color:#fff}
+  .top.open nav .m-only{display:block}
+}
 </style>
 </head>
 <body>
@@ -210,8 +220,9 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--fg3);text-align:center
       <svg viewBox="0 0 30 30" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#f26a1b"/><stop offset="1" stop-color="#ffb27a"/></linearGradient></defs><path d="M3 21c5-11 9-11 12-5s7 6 12-5" fill="none" stroke="url(#lg)" stroke-width="3.2" stroke-linecap="round"/><path d="M3 26c5-11 9-11 12-5s7 6 12-5" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" opacity=".55"/></svg>
       Tantu
     </a>
-    <nav aria-label="Primary"><a href="#gallery">Gallery</a><a href="#pricing">Pricing</a><a href="#how">How it works</a><a href="#faq">FAQ</a></nav>
+    <nav aria-label="Primary" id="primary-nav"><a href="#gallery">Gallery</a><a href="#pricing">Pricing</a><a href="#how">How it works</a><a href="#faq">FAQ</a><a class="m-only" href="tantu-landing.html">Tantu home</a></nav>
     <div class="spacer"></div>
+    <button type="button" class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
     <a class="btn gb-key btn-sm" href="tantu-landing.html#start">Start free<span class="gb-shine" aria-hidden="true"></span></a>
   </div>
 </header>
@@ -454,5 +465,6 @@ footer{padding-block:28px 40px;font-size:13px;color:var(--fg3);text-align:center
   document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const el=document.getElementById(a.getAttribute('href').slice(1));if(!el)return;e.preventDefault();el.scrollIntoView({behavior:'smooth',block:'start'});});
 })();
 </script>
+<script>(function(){var top=document.querySelector('.top'),btn=document.querySelector('.menu'),nav=document.getElementById('primary-nav');if(!top||!btn||!nav)return;var set=function(o){top.classList.toggle('open',o);btn.setAttribute('aria-expanded',String(o));btn.setAttribute('aria-label',o?'Close menu':'Open menu');btn.textContent=o?'✕':'☰';};btn.addEventListener('click',function(){set(!top.classList.contains('open'));});nav.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});addEventListener('resize',function(){if(innerWidth>959)set(false);});})();</script>
 </body>
 </html>

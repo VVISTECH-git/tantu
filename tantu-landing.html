@@ -677,7 +677,32 @@ button:not(:disabled):active,[role=button]:not([aria-disabled=true]):active,.pre
 .xo-body li{animation:liIn .4s ease both}.xo-body li:nth-child(1){animation-delay:.35s}.xo-body li:nth-child(2){animation-delay:.47s}.xo-body li:nth-child(3){animation-delay:.59s}
 @keyframes liIn{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion: reduce){.rv{opacity:1;transform:none}.sparks,.lshine,.fshine,.fx-pulse,.fx-spark{display:none}}
-html,body{overflow-x:clip}</style>
+html,body{overflow-x:clip}
+/* --- regression fixes r1 --- */
+.fest .sparks{position:absolute;inset:0;pointer-events:none}
+.fest{background:linear-gradient(100deg,#8a2f0e,#c2410c 55%,#e8861b);box-shadow:0 20px 40px -24px rgba(138,47,14,.6)}
+.fest .btn-ghost{color:#8a2f0e}
+.cd b span{font-size:inherit;letter-spacing:0;opacity:1;font-weight:inherit}
+.spot .spot-card{position:relative;left:auto;bottom:auto;transform:none;padding:0;background:#1f150e;font-size:inherit;backdrop-filter:none;border-radius:16px}
+
+/* r2: the game section shares the .spot class with an old two-column hotspot rule */
+#spot{display:block;max-width:none;grid-template-columns:none;gap:0;margin:0}
+#spot .spot-wrap{width:auto}
+@media (max-width:639px){footer{padding-bottom:120px}}
+
+/* r3: mobile menu */
+.top .wrap{position:relative}
+.menu{display:none;width:40px;height:40px;border-radius:10px;border:1px solid var(--line);background:transparent;color:var(--fg);font-size:20px;line-height:1;cursor:pointer;margin-left:6px}
+.top nav .m-only{display:none}
+@media (max-width:959px){
+  .menu{display:inline-grid;place-items:center}
+  .top.open nav{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;align-items:flex-start;gap:18px;padding:18px 20px 24px;background:var(--bg);border-bottom:1px solid var(--line);box-shadow:0 24px 30px -22px rgba(26,20,16,.35);font-size:16px}
+  .top.open nav .sol{display:none}
+  .top.open nav .m-only{display:block}
+  .top.open .menu{background:var(--primary-soft);color:var(--primary-strong)}
+}
+@media (max-width:640px){.cw .ph{max-width:100%}}
+</style>
 </head>
 <body>
 
@@ -688,10 +713,11 @@ html,body{overflow-x:clip}</style>
       <svg viewBox="0 0 30 30" aria-hidden="true"><defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#c84e0f"/><stop offset="1" stop-color="#ffb27a"/></linearGradient></defs><path d="M3 21c5-11 9-11 12-5s7 6 12-5" fill="none" stroke="url(#lg)" stroke-width="3.2" stroke-linecap="round"/><path d="M3 26c5-11 9-11 12-5s7 6 12-5" fill="none" stroke="#f26a1b" stroke-width="2.4" stroke-linecap="round" opacity=".55"/></svg>
       Tantu
     </a>
-    <nav aria-label="Primary">
-      <a href="tantu-studio.html">Tantu Studio</a><a href="#caps">Features</a><span class="sol" id="sol"><button type="button" class="solb" aria-expanded="false" aria-haspopup="true">Solutions <i aria-hidden="true">›</i></button><div class="solp" id="solp" role="menu"></div></span><a href="#faq">How to use</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a>
+    <nav aria-label="Primary" id="primary-nav">
+      <a href="tantu-studio.html">Tantu Studio</a><a href="#caps">Features</a><span class="sol" id="sol"><button type="button" class="solb" aria-expanded="false" aria-haspopup="true">Solutions <i aria-hidden="true">›</i></button><div class="solp" id="solp" role="menu"></div></span><a href="#how">How to use</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="m-only" href="tantu-login.html">Sign in</a>
     </nav>
     <div class="spacer"></div>
+    <button type="button" class="menu" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
     <a class="signin" href="tantu-login.html">Sign in</a>
     <a class="btn attract btn-sm" href="tantu-login.html">Start free<span class="gb-shine" aria-hidden="true"></span></a>
   </div>
@@ -709,7 +735,7 @@ html,body{overflow-x:clip}</style>
         <a class="btn btn-ghost" href="tantu-studio.html">See Tantu Studio <span aria-hidden="true">›</span></a>
       </div>
       <ul class="assure hero-anim" style="--d:.45s">
-        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift" aria-hidden="true"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg>50 credits free</li>
+        <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gift" aria-hidden="true"><path d="M12 7v14"/><path d="M20 11v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="M7.5 7a1 1 0 0 1 0-5A4.8 8 0 0 1 12 7a4.8 8 0 0 1 4.5-5 1 1 0 0 1 0 5"/><rect x="3" y="7" width="18" height="4" rx="1"/></svg>2 HD photos free · 50 credits</li>
         <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-credit-card" aria-hidden="true"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>No card required</li>
         <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-infinity" aria-hidden="true"><path d="M6 16c5 0 7-8 12-8a4 4 0 0 1 0 8c-5 0-7-8-12-8a4 4 0 1 0 0 8"/></svg>Credits never expire</li>
         <li><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield-check" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>Commercial rights</li>
@@ -804,7 +830,7 @@ html,body{overflow-x:clip}</style>
   </div>
 </section>
 
-<section style="padding-top:0">
+<section style="padding-top:0" id="how">
   <div class="wrap flow">
     <div class="ph" style="max-width:360px;width:100%;border-radius:var(--r-4xl);justify-self:center"><img data-src="img/flow-input" alt="Uploaded flat-lay"><span class="badge badge-solid">UPLOAD</span><div class="placeholder"></div></div>
     <div class="arrow" aria-hidden="true">→</div>
@@ -910,7 +936,7 @@ html,body{overflow-x:clip}</style>
 <section id="pricing">
   <div class="wrap">
     <div class="sec-head"><span class="eyebrow">From ₹249 · 250 credits</span><h2>Pay once. Shoot forever.</h2><p>No monthly plan. No lock-in. Credits never expire — every photo is yours, always.</p><small class="muted" style="font-size:12px">Prices in ₹ INR</small></div>
-    <div class="packs2"><div class="pk2"><span class="nm">Spark</span><div class="pr"><s>₹498</s><b>₹249</b></div><span class="lp">Launch price · 50% off</span><span class="cr">250 credits</span><span class="crs">250 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>27 photos</td><td>₹9</td></tr><tr><td>2K</td><td>10 photos</td><td>₹25</td></tr><tr><td>4K</td><td>7 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn btn-ghost" href="tantu-login.html">Get Spark</a></div><div class="pk2 pop"><span class="tab">Most Popular</span><span class="nm">Boost</span><div class="pr"><s>₹998</s><b>₹499</b></div><span class="lp">Launch price · 50% off</span><span class="cr">500 credits</span><span class="crs">500 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>55 photos</td><td>₹9</td></tr><tr><td>2K</td><td>20 photos</td><td>₹25</td></tr><tr><td>4K</td><td>14 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn gb-key" href="tantu-login.html">Get Boost<span class="gb-shine" aria-hidden="true"></span></a></div><div class="pk2"><span class="nm">Starter</span><div class="pr"><s>₹1,998</s><b>₹999</b></div><span class="lp">Launch price · 50% off</span><span class="cr">1,000 credits</span><span class="crs">1,000 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>111 photos</td><td>₹9</td></tr><tr><td>2K</td><td>40 photos</td><td>₹25</td></tr><tr><td>4K</td><td>28 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn btn-ghost" href="tantu-login.html">Get Starter</a></div><div class="pk2"><span class="tab val">Best Value</span><span class="nm">Growth</span><div class="pr"><s>₹3,998</s><b>₹1,999</b></div><span class="lp">Launch price · 50% off</span><span class="cr">2,000 credits</span><span class="crs">2,000 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>222 photos</td><td>₹9</td></tr><tr><td>2K</td><td>80 photos</td><td>₹25</td></tr><tr><td>4K</td><td>57 photos</td><td>₹35</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn btn-ghost" href="tantu-login.html">Get Growth</a></div></div>
+    <div class="packs2"><div class="pk2"><span class="nm">Spark</span><div class="pr"><s>₹498</s><b>₹249</b></div><span class="lp">Launch price · 50% off</span><span class="cr">250 credits</span><span class="crs">250 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>27 photos</td><td>₹9</td></tr><tr><td>2K</td><td>10 photos</td><td>₹25</td></tr><tr><td>4K</td><td>7 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn btn-ghost" href="tantu-login.html">Get Spark</a></div><div class="pk2 pop"><span class="tab">Most Popular</span><span class="nm">Boost</span><div class="pr"><s>₹998</s><b>₹499</b></div><span class="lp">Launch price · 50% off</span><span class="cr">500 credits</span><span class="crs">500 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>55 photos</td><td>₹9</td></tr><tr><td>2K</td><td>20 photos</td><td>₹25</td></tr><tr><td>4K</td><td>14 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn gb-key" href="tantu-login.html">Get Boost<span class="gb-shine" aria-hidden="true"></span></a></div><div class="pk2"><span class="nm">Starter</span><div class="pr"><s>₹1,998</s><b>₹999</b></div><span class="lp">Launch price · 50% off</span><span class="cr">1,000 credits</span><span class="crs">1,000 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>111 photos</td><td>₹9</td></tr><tr><td>2K</td><td>40 photos</td><td>₹25</td></tr><tr><td>4K</td><td>28 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn btn-ghost" href="tantu-login.html">Get Starter</a></div><div class="pk2"><span class="tab val">Best Value</span><span class="nm">Growth</span><div class="pr"><s>₹3,998</s><b>₹1,999</b></div><span class="lp">Launch price · 50% off</span><span class="cr">2,000 credits</span><span class="crs">2,000 credits · ₹9/photo at 1K</span><table><tr><td>1K</td><td>222 photos</td><td>₹9</td></tr><tr><td>2K</td><td>80 photos</td><td>₹25</td></tr><tr><td>4K</td><td>56 photos</td><td>₹36</td></tr></table><ul><li>Never expires</li><li>Failed shots refunded</li><li>Commercial rights</li></ul><a class="btn btn-ghost" href="tantu-login.html">Get Growth</a></div></div>
     <p class="plans-more">Plans from ₹249 · <a href="tantu-app.html#credits">View all plans</a></p>
   </div>
 </section>
@@ -1215,7 +1241,7 @@ html,body{overflow-x:clip}</style>
     (function(){const sol=$('#sol');if(!sol)return;const groups=[['How to get orders',['Meesho · seller growth','Flipkart · seller growth','Amazon India · seller growth','Myntra · brand growth','AJIO · seller growth','Nykaa Fashion · brand growth','Shopify · D2C growth','Etsy · seller growth']],['By garment',['Saree photography','Kurti & kurta sets','Lehenga & bridal','Jewellery','Men\'s ethnic','Western wear']],['By marketplace',['Myntra sellers','Shopify & D2C','Meesho suppliers','Amazon sellers']],['By use case',['E-commerce','AI models','Boutiques','Festive launches','Colour variants','Lookbooks']]];
       $('#solp').innerHTML='<div class="in">'+groups.map(([t,l])=>'<div><h5>'+t+'</h5>'+l.map(x=>'<a href="tantu-login.html" role="menuitem">'+x+'</a>').join('')+'</div>').join('')+'</div>';
       let tm;const open=()=>{clearTimeout(tm);sol.classList.add('open');sol.querySelector('.solb').setAttribute('aria-expanded','true');},close=()=>{tm=setTimeout(()=>{sol.classList.remove('open');sol.querySelector('.solb').setAttribute('aria-expanded','false');},120);};
-      sol.addEventListener('mouseenter',open);sol.addEventListener('mouseleave',close);sol.addEventListener('focusin',open);sol.addEventListener('focusout',close);sol.querySelector('.solb').addEventListener('click',()=>sol.classList.contains('open')?(clearTimeout(tm),sol.classList.remove('open')):open());})();
+      sol.addEventListener('mouseenter',()=>{sol.dataset.hov='1';open();});sol.addEventListener('mouseleave',()=>{sol.dataset.hov='';close();});sol.addEventListener('focusin',open);sol.addEventListener('focusout',close);sol.querySelector('.solb').addEventListener('click',()=>{if(sol.classList.contains('open')&&sol.dataset.hov!=='1'){clearTimeout(tm);sol.classList.remove('open');sol.querySelector('.solb').setAttribute('aria-expanded','false');}else{sol.dataset.hov='';open();}});})();
     // 1.3 smooth scroll re-target (6 x 300 ms at -84 px)
     document.addEventListener('click',e=>{const a=e.target.closest('a[href^="#"]');if(!a)return;const el=document.getElementById(a.getAttribute('href').slice(1));if(!el)return;let n=0;const go=()=>{const top=el.getBoundingClientRect().top+scrollY-84;if(Math.abs(top-scrollY)>4)scrollTo({top,behavior:'smooth'});n++;if(n<6)setTimeout(go,300);};setTimeout(go,50);},true);
     // 2.1 hero ambient glow
@@ -1255,7 +1281,7 @@ html,body{overflow-x:clip}</style>
     // 8.1 / 8.2 calculator tween + bars
     (function(){const ids=['m-studio','m-ours','m-keep'];const els=ids.map(i=>document.getElementById(i));if(els.some(e=>!e))return;const cur={};const num=t=>+String(t).replace(/[^0-9]/g,'')||0;els.forEach(e=>cur[e.id]=num(e.textContent));
       const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
-      els.forEach(e=>{let raf=0;new MutationObserver(()=>{const target=num(e.textContent);if(e.dataset.tw==='1'){return;}const from=cur[e.id];if(from===target)return;cancelAnimationFrame(raf);const t0=performance.now();const step=t=>{const p=Math.min(1,(t-t0)/450),k=1-Math.pow(1-p,3);e.dataset.tw='1';e.textContent=inr(from+(target-from)*k);e.dataset.tw='';if(p<1)raf=requestAnimationFrame(step);else cur[e.id]=target;};raf=requestAnimationFrame(step);}).observe(e,{childList:true,characterData:true,subtree:true});});
+      els.forEach(e=>{let raf=0,own=null;new MutationObserver(()=>{if(e.textContent===own)return;const target=num(e.textContent);const from=cur[e.id];if(from===target)return;cancelAnimationFrame(raf);const t0=performance.now();const step=t=>{const p=Math.min(1,(t-t0)/450),k=1-Math.pow(1-p,3);own=inr(from+(target-from)*k);e.textContent=own;if(p<1)raf=requestAnimationFrame(step);else cur[e.id]=target;};raf=requestAnimationFrame(step);}).observe(e,{childList:true,characterData:true,subtree:true});});
       const bar=document.getElementById('m-bar');const upBar=()=>{const s=num(document.getElementById('m-studio').textContent),o=num(document.getElementById('m-ours').textContent);if(bar)bar.style.width=Math.max(2,s>0?o/s*100:2)+'%';};new MutationObserver(upBar).observe(document.getElementById('m-studio'),{childList:true,subtree:true,characterData:true});upBar();})();
     // 10.2 capability tilt
     if(fine)$$('.cap').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(1200px) rotateX('+(-y*12)+'deg) rotateY('+(x*12)+'deg) translateY(-4px)';});card.addEventListener('mouseleave',()=>{card.style.transform='';});});
@@ -1312,5 +1338,6 @@ html,body{overflow-x:clip}</style>
 })();
 </script>
 
+<script>(function(){var top=document.querySelector('.top'),btn=document.querySelector('.menu'),nav=document.getElementById('primary-nav');if(!top||!btn||!nav)return;var set=function(o){top.classList.toggle('open',o);btn.setAttribute('aria-expanded',String(o));btn.setAttribute('aria-label',o?'Close menu':'Open menu');btn.textContent=o?'✕':'☰';};btn.addEventListener('click',function(){set(!top.classList.contains('open'));});nav.addEventListener('click',function(e){if(e.target.closest('a'))set(false);});document.addEventListener('keydown',function(e){if(e.key==='Escape')set(false);});addEventListener('resize',function(){if(innerWidth>959)set(false);});})();</script>
 </body>
 </html>

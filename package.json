@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Drapify-style saree catalog renders on Gemini image models",
-  "engines": { "node": ">=20" },
+  "engines": { "node": "22.x" },
   "scripts": {
     "cli": "node generate.js",
     "dev": "node dev-server.js"
